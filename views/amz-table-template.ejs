@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<table class="table table-bordered ">
+    <thead>
+        
+        <tr>
+            <th colspan="2" scope="colgroup"></th>
+            <th class=" text-primary " colspan="5" scope="colgroup">Flights</th>
+            <th class=" text-info" colspan="5" scope="colgroup">Trucks</th>
+            <th class=" text-success" colspan="4" scope="colgroup">MOPvP</th>
+        </tr>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date</th>
+            <th scope="col">Inbound Total</th>
+            <th scope="col">Inbound Late</th>
+            <th scope="col">Outbound Total</th>
+            <th scope="col">Outbound Late</th>
+            <th scope="col">Out Late due to LCS</th>
+            <th scope="col">Inbound </th>
+            <th scope="col">Inbound Late</th>
+            <th scope="col">Outbound </th>
+            <th scope="col">Outbound Late</th>
+            <th scope="col">Out Late due to LCS</th>
+            <th scope="col">Head Count Plan</th>
+            <th scope="col">Head Count Act</th>
+            <th scope="col">Hours Plan</th>
+            <th scope="col">Hours Act</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var item = 0; item < data.length; item++) { %>
+            <tr>
+                <td scope="row"><%=[item+1]%> </td>
+                <td><%=moment(data[item].date).add(1,'d').format('MM-DD-YYYY')%></td>  
+                <td><%=data[item].flights.inbound_total%></td>
+                <td><%=data[item].flights.inbound_late%></td>
+                <td><%=data[item].flights.outbound_total%></td>
+                <td><%=data[item].flights.outbound_late%></td>
+                <td><%=data[item].flights.out_late_due_to_LCS%></td>
+                <td><%=data[item].trucks.inbound%></td>
+                <td><%=data[item].trucks.inbound_late%></td>
+                <td><%=data[item].trucks.outbound%></td>
+                <td><%=data[item].trucks.outbound_late%></td>
+                <td><%=data[item].trucks.out_late_due_to_LCS%></td>
+                <td><%=data[item].mopvp.head_count_plan%></td>
+                <td><%=data[item].mopvp.head_count_act%></td>
+                <td><%=data[item].mopvp.hours_plan%></td>
+                <td><%=data[item].mopvp.hours_act%></td>
+            </tr>    
+        <% } %>  
+    </tbody>
+</table>
+ 
+ 

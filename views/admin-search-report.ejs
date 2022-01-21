@@ -1,0 +1,71 @@
+ 
+<!doctype html>
+<html lang="en">
+ 
+<head>
+  <title>LGSTX - Export Report</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/style.css">
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+ 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+ 
+<body>
+ 
+  <div class="sidebar">
+    <%- include('./partials/admin-navbar') %>
+  </div>
+ 
+  <section class="home-section">
+    <nav>
+      <div class="sidebar-button">
+        <span class="dashboard"><%=user.section%></span>
+      </div>
+ 
+      <div class="profile-details">
+        <span class="admin_name"><%= c_username %></span>
+        <i class='bx bx-chevron-down'></i>
+      </div>
+    </nav>
+    <div class="home-content">
+      <form action="/admin-search-report/<%=user._id %>" method="POST">
+        <div>
+          <label for="fdate">From Date</label>
+          <input type="date" maxlength="10" name="fdate" id="fdate" required=true />
+          <label for="tdate">To Date</label>
+          <input type="date" maxlength="10" name="tdate" id="tdate" required=true />
+        <button class="btn btn-primary">Search</button>
+        <button type="submit" formaction="/admin-export-report-excel/<%=user._id %>" class="btn btn-info">Export</button>
+      </div>
+      </form>
+      <div class="card margin-top-md margin-right-md margin-bottom-md margin-left-md">
+      <% if(user.section=='amz_kclt' || user.section=='amz_kbna' || user.section=='amz_ktpa' ) {%>
+        <%- include('amz-table-template') %>
+          <% } else if(user.section=='usps_cfs' || user.section=='usps_chi' ) {%>
+            <%- include('usps-table-template') %>
+              <% } else { %>
+                <%- include('department-table-template') %>
+                  <% } %>
+              </div>
+    </div>
+  </section>
+ 
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+ 
+</html>
